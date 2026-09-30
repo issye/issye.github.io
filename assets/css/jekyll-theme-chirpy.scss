@@ -1,0 +1,99 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* ==============================================
+   Syelyly pink theme
+   Only colors are changed. Layout stays the same.
+   ============================================== */
+
+@mixin pink-light {
+  /* Sidebar */
+  --sidebar-bg: #fff0f5;
+  --sidebar-border-color: #fce4ec;
+  --sidebar-hover-bg: rgb(248 187 208 / 40%);
+  --sidebar-active-color: #ad1457;
+  --site-title-color: #ad1457;
+  --site-subtitle-color: #7a5a67;
+  --avatar-border-color: #f8bbd0;
+
+  /* Text and links */
+  --heading-color: #3d1f2c;
+  --link-color: #c2185b;
+  --link-underline-color: #f8bbd0;
+  --blockquote-border-color: #f8bbd0;
+
+  /* Posts */
+  --toc-highlight: #c2185b;
+  --btn-share-hover-color: #d81b60;
+  --checkbox-checked-color: #d81b60;
+  --footnote-target-bg: #fce4ec;
+
+  /* Tags, categories, archive */
+  --tag-border: #f8bbd0;
+  --tag-hover: #fce4ec;
+  --search-tag-bg: #fdf2f6;
+  --categories-icon-hover-color: #ad1457;
+  --timeline-node-bg: #f48fb1;
+}
+
+@mixin pink-dark {
+  /* Sidebar */
+  --sidebar-bg: #231a1f;
+  --sidebar-border-color: #33242b;
+  --sidebar-hover-bg: #33222b;
+  --sidebar-active-color: #f8bbd0;
+  --site-title-color: #f48fb1;
+  --site-subtitle-color: #a0909a;
+  --avatar-border-color: #f48fb1;
+
+  /* Text and links */
+  --link-color: #f48fb1;
+  --link-underline-color: #7a3552;
+  --blockquote-border-color: #5c2a40;
+
+  /* Posts */
+  --toc-highlight: #f48fb1;
+  --btn-share-hover-color: #f8bbd0;
+  --footnote-target-bg: #7a2e50;
+
+  /* Tags, categories, archive */
+  --tag-border: #6b3350;
+  --tag-hover: #4a2536;
+  --categories-icon-hover-color: #f8bbd0;
+  --timeline-node-bg: #f48fb1;
+}
+
+/* When the visitor picks a mode with the toggle button */
+:root[data-bs-theme='light'] {
+  @include pink-light;
+}
+
+:root[data-bs-theme='dark'] {
+  @include pink-dark;
+}
+
+/* When no mode is picked, follow the device setting */
+@media (prefers-color-scheme: light) {
+  :root:not([data-bs-theme]) {
+    @include pink-light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme]) {
+    @include pink-dark;
+  }
+}
